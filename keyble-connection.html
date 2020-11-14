@@ -1,0 +1,51 @@
+<script type="text/javascript">
+	RED.nodes.registerType('keyble-connection', {
+		category: 'config',
+		defaults: {
+			name: {value:'Default connection', required:true},
+		},
+		credentials: {
+			address: {value:null, type:'text', required:true, validate:((address) => (address.replace(/[^0-9A-Fa-f]/g, '').length === 12))},
+			user_id: {value:null, type:'text', required:true, validate:((user_id) => [0, 1, 2, 3, 4, 5, 6, 7].includes(parseInt(user_id)))},
+			user_key: {value:null, type:'password', required:true, validate:function(user_key) {return (this.credentials.has_user_key || (user_key.replace(/[^0-9A-Fa-f]/g, '').length === 32))}},
+		},
+		label: function() {
+			return `${this.name}`;
+		}
+	});
+</script>
+
+<script type="text/html" data-template-name="keyble-connection">
+	<div class="form-row">
+		<label for="node-config-input-name"><i class="fa fa-tag"></i> Name</label>
+		<input type="text" id="node-config-input-name" placeholder="Name">
+	</div>
+	<div class="form-row">
+		<label for="node-config-input-address"><i class="fa fa-at"></i> Address</label>
+		<input type="text" minlength="12" id="node-config-input-address" placeholder="Address">
+	</div>
+	<div class="form-row">
+		<label for="node-config-input-user_id"><i class="fa fa-id-card"></i> User ID</label>
+		<input type="number" min="0" step="1" max="7" id="node-config-input-user_id" placeholder="User ID">
+	</div>
+	<div class="form-row">
+		<label for="node-config-input-user_key"><i class="fa fa-key"></i> User Key</label>
+		<input type="password" minlength="32" id="node-config-input-user_key" placeholder="User Key">
+	</div>
+</script>
+
+<script type="text/html" data-help-name="keyble-connection">
+	<p>Eqiva eQ-3 bluetooth smart lock connection node</p>
+
+	<h3>Details</h3>
+	<p><code>Name</code> is the textual label being used to represent this connection. There's usually no need to change the default value, but you may do so if you like.</p>
+	<p><code>Address</code> must be set to the smart lock's MAC address. Must be a string with exactly 12 hexadecimal digits, for example <code>01:23:45:67:89:ab</code>.</p>
+	<p><code>User ID</code> must be set to the ID of the user account to use for authenticating with the smart lock. Must be an integer number between 0 and 7 (inclusive), for example <code>1</code>.</p>
+	<p><code>User Key</code> must be set to the key of the user account to use for authenticating with the smart lock. Must be a string with exactly 32 hexadecimal digits, for example <code>ca78ad9b96131414359e5e7cecfd7f9e</code>.</p>
+	<p>See <a href="">here</a> for instructions on how to figure out these values for your specific smart lock.</p>
+
+	<h3>References</h3>
+	<ul>
+		<li><a href="https://oyooyo.github.io/keyble-nodered">GitHub</a> - the node's GitHub page</li>
+	</ul>
+</script>

@@ -1,0 +1,47 @@
+{
+	"name": "keyble-nodered",
+	"version": "0.3.0",
+	"description": "Node-RED nodes for controlling eQ-3 eqiva bluetooth smart locks",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"node-red": {
+		"nodes": {
+			"keyble-connection": "keyble-connection.js",
+			"keyble-send_command": "keyble-send_command.js",
+			"keyble-status": "keyble-status.js"
+		}
+	},
+	"engines": {
+		"node": ">=0.10"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/oyooyo/keyble-nodered.git"
+	},
+	"keywords": [
+		"eqiva",
+		"eq-3",
+		"key-ble",
+		"keyble",
+		"node-red",
+		"smart lock"
+	],
+	"homepage": "https://oyooyo.github.io/keyble-nodered",
+	"author": {
+		"name": "oyooyo"
+	},
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/oyooyo/keyble-nodered/issues"
+	},
+	"dependencies": {
+		"keyble": "^0.3.0"
+	},
+	"files": [
+		"*.js",
+		"*.md",
+		"package.json",
+		"package-lock.json"
+	]
+}
